@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Atendimento Conecta Obras: n8n e Gemini",
+    "quality_profile": "showcase",
+    "viewBox": [1180, 700]
+  },
+  "components": [
+    { "id": "navegador", "type": "frontend", "label": "Interface web", "sublabel": "Conversa no navegador", "pos": [55, 300], "size": [170, 76] },
+    { "id": "servidorLocal", "type": "backend", "label": "Servidor local", "sublabel": "Python · porta 8765", "pos": [300, 300], "size": [180, 76] },
+    { "id": "fluxoN8n", "type": "backend", "label": "Workflow n8n", "sublabel": "Valida, consulta e responde", "tag": "Webhook :5678", "pos": [570, 300], "size": [220, 76] },
+    { "id": "gemini", "type": "external", "label": "API Gemini", "sublabel": "Gera resposta em JSON", "pos": [900, 300], "size": [175, 76] },
+    { "id": "base", "type": "database", "label": "Base Conecta Obras", "sublabel": "empresa.json · incorporada", "pos": [570, 90], "size": [220, 76] },
+    { "id": "registro", "type": "database", "label": "Data Table n8n", "sublabel": "Somente metadados", "pos": [570, 510], "size": [220, 76] }
+  ],
+  "connections": [
+    { "id": "enviaMensagem", "from": "navegador", "to": "servidorLocal", "label": "mensagem", "variant": "emphasis" },
+    { "id": "encaminhaWebhook", "from": "servidorLocal", "to": "fluxoN8n", "label": "JSON local", "variant": "emphasis" },
+    { "id": "consultaIA", "from": "fluxoN8n", "to": "gemini", "label": "prompt e resposta", "variant": "emphasis" },
+    { "id": "incorporaBase", "from": "base", "to": "fluxoN8n", "label": "fatos e regras", "variant": "dashed", "labelDy": 24 },
+    { "id": "registraMetadados", "from": "fluxoN8n", "to": "registro", "label": "categoria e tempo", "variant": "dashed", "labelDy": 24 }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Entrada e retorno", "items": ["A página envia a pergunta ao n8n pelo servidor local.", "O n8n devolve texto, categoria, prioridade e status pelo mesmo caminho."] },
+    { "dot": "violet", "title": "Uso da IA", "items": ["A base do repositório e a pergunta formam o prompt enviado ao Gemini.", "O n8n valida o JSON gerado antes de responder."] },
+    { "dot": "emerald", "title": "Dados e limites", "items": ["A Data Table registra apenas metadados do atendimento.", "O fluxo não consulta contas ou pedidos do aplicativo."] }
+  ]
+}

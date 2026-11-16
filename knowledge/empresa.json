@@ -1,0 +1,24 @@
+{
+  "nome": "Conecta Obras",
+  "apresentacao": "Plataforma em estágio de MVP que aproxima clientes de profissionais autônomos para serviços de construção, reforma, reparo e manutenção em Itacoatiara-AM.",
+  "papel_da_plataforma": "A plataforma facilita a busca, a divulgação de perfis, as solicitações, a comunicação e as avaliações. Não executa obras ou reparos, não emprega os profissionais cadastrados e não negocia condições comerciais em nome dos usuários.",
+  "clientes": [
+    "Podem buscar profissionais por categoria, consultar perfis, portfólios e avaliações.",
+    "Podem publicar pedidos de serviço com descrição, categoria, orçamento pretendido, prazo e localização, ou enviar uma solicitação direta pelo perfil do profissional.",
+    "Podem conversar com o profissional pelo chat do aplicativo, acompanhar contratações e avaliar o serviço após sua conclusão."
+  ],
+  "profissionais": [
+    "Podem criar perfil com especialidades e portfólio, consultar oportunidades e receber solicitações diretas.",
+    "Podem se candidatar a pedidos, apresentar contrapropostas, conversar com clientes e acompanhar serviços."
+  ],
+  "lojistas": "O MVP também contém cadastro de loja, catálogo de produtos e gestão de pedidos. A disponibilidade de uma loja ou produto específico depende dos dados publicados no aplicativo.",
+  "orcamentos_e_contratacao": "A plataforma não informa preço fixo nem gera orçamento em nome do profissional. Cliente e profissional combinam diretamente escopo, preço, prazo, materiais, deslocamento e forma de pagamento. Enviar uma solicitação não cria contratação automática.",
+  "pagamentos": "No MVP, pagamentos podem ocorrer diretamente entre cliente e profissional, fora da plataforma; a plataforma não processa pagamentos nem retém comissões.",
+  "suporte": "Usuários autenticados encontram Meus chamados no perfil da conta. Ali podem criar um chamado, consultar o próprio histórico e trocar mensagens enquanto o chamado estiver ativo.",
+  "contato": "Para suporte no aplicativo, usuários autenticados podem acessar Meus chamados no perfil da conta. Esta base não define um canal público de atendimento geral para quem não tem conta.",
+  "faq": [
+    { "pergunta": "Como encontro um profissional?", "resposta": "No aplicativo, busque profissionais por categoria e consulte perfis, portfólios e avaliações. A disponibilidade de cada profissional deve ser confirmada diretamente com ele." },
+    { "pergunta": "Como peço um orçamento?", "resposta": "Publique um pedido de serviço ou envie uma solicitação direta pelo perfil do profissional. Descreva o serviço e negocie preço e prazo diretamente com o profissional; a plataforma não define esses valores." },
+    { "pergunta": "Como peço ajuda?", "resposta": "Se você tem uma conta no aplicativo, abra seu perfil e acesse Meus chamados para criar um chamado ou acompanhar um já existente." }
+  ]
+}

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123b44">
+  <title>Atendimento | Conecta Obras</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f5f3ec; color: #1b343a; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: radial-gradient(circle at 4% 3%, #e4f0e7 0, transparent 31rem), radial-gradient(circle at 97% 95%, #f7dfcd 0, transparent 30rem), #f5f3ec; }
+    button, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .shell { width: min(1200px, calc(100% - 32px)); min-height: min(840px, calc(100vh - 48px)); margin: 24px auto; display: grid; grid-template-columns: 330px minmax(0, 1fr); background: #fffdf8; border: 1px solid #e7e5dc; border-radius: 24px; box-shadow: 0 18px 60px #173a3b17; overflow: hidden; }
+    .side { padding: 34px 30px; background: #123b44; color: #eff8f3; display: flex; flex-direction: column; gap: 28px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 750; font-size: 15px; letter-spacing: .01em; }
+    .mark { display: grid; place-items: center; width: 39px; height: 39px; border-radius: 13px; background: #bce6c4; color: #123b44; font-size: 22px; font-weight: 800; }
+    .eyebrow { margin: 0 0 13px; color: #bce6c4; font-size: 12px; font-weight: 750; text-transform: uppercase; letter-spacing: .15em; }
+    h1 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(34px, 3vw, 46px); line-height: 1.08; letter-spacing: -.035em; font-weight: 500; }
+    .intro { margin: 18px 0 0; color: #c5d9d6; font-size: 15px; line-height: 1.6; }
+    .side-note { margin-top: auto; padding: 18px; border: 1px solid #ffffff30; border-radius: 16px; background: #ffffff0d; color: #d4e5e2; font-size: 13px; line-height: 1.55; }
+    .side-note strong { display: block; color: #fff; margin-bottom: 6px; }
+    .chat { display: flex; flex-direction: column; min-width: 0; min-height: 640px; }
+    .chat-head { padding: 22px 30px; border-bottom: 1px solid #eae9e2; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .chat-title { font-weight: 750; font-size: 16px; }
+    .chat-subtitle { display: block; color: #748184; font-size: 12px; margin-top: 3px; font-weight: 450; }
+    .availability { display: flex; align-items: center; gap: 8px; color: #56716b; font-size: 12px; white-space: nowrap; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #4baf75; box-shadow: 0 0 0 4px #e5f5e9; }
+    .messages { flex: 1; padding: 30px; display: flex; flex-direction: column; gap: 20px; overflow-y: auto; min-height: 350px; max-height: calc(100vh - 300px); }
+    .message { max-width: min(78%, 590px); display: flex; flex-direction: column; gap: 6px; align-self: flex-start; }
+    .message.user { align-self: flex-end; }
+    .speaker { font-size: 11px; font-weight: 750; letter-spacing: .04em; color: #7c8a8b; text-transform: uppercase; padding: 0 3px; }
+    .bubble { background: #f0f3ed; border: 1px solid #e6ece4; border-radius: 4px 17px 17px 17px; padding: 14px 17px; font-size: 14px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .user .bubble { background: #d9ebdf; border-color: #cce4d4; border-radius: 17px 4px 17px 17px; }
+    .message.error .bubble { background: #fff2eb; border-color: #f1d8c8; color: #8a3f2c; }
+    .meta { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 3px; }
+    .pill { border-radius: 20px; background: #edf2ed; color: #41615b; font-size: 11px; padding: 4px 8px; }
+    .prompts { padding: 0 30px 19px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .prompts button { border: 1px solid #d9e6dd; color: #315a50; background: #f9fcf8; border-radius: 20px; padding: 8px 12px; font-size: 12px; transition: background .15s, border-color .15s; }
+    .prompts button:hover { background: #e9f4ec; border-color: #aecdb8; }
+    .composer { padding: 18px 30px 24px; border-top: 1px solid #eae9e2; background: #fffdf8; }
+    .composer label { display: block; color: #42615b; font-size: 12px; font-weight: 700; margin-bottom: 9px; }
+    .input-row { display: flex; align-items: end; gap: 10px; border: 1px solid #cadbd0; border-radius: 16px; padding: 9px; background: #fff; box-shadow: 0 2px 8px #123b4408; }
+    .input-row:focus-within { outline: 2px solid #a6d6b4; outline-offset: 1px; }
+    textarea { border: 0; resize: vertical; outline: 0; width: 100%; min-height: 52px; max-height: 150px; padding: 10px 8px; color: #1b343a; background: transparent; font-size: 14px; line-height: 1.5; }
+    textarea::placeholder { color: #97a5a3; }
+    .send { border: 0; border-radius: 11px; background: #16765f; color: #fff; font-weight: 700; padding: 13px 18px; min-height: 44px; }
+    .send:hover { background: #0f604d; }
+    .send:disabled, .prompts button:disabled { opacity: .55; cursor: wait; }
+    .helper { min-height: 18px; margin: 9px 2px 0; color: #788989; font-size: 11px; }
+    @media (max-width: 760px) { .shell { display: flex; flex-direction: column; margin: 0; width: 100%; min-height: 100vh; border: 0; border-radius: 0; } .side { padding: 22px; gap: 14px; } .side h1 { font-size: 28px; } .intro { margin-top: 8px; font-size: 13px; } .side-note { display: none; } .chat { min-height: 0; flex: 1; } .chat-head { padding: 16px 20px; } .messages { padding: 20px; min-height: 250px; max-height: none; } .prompts { padding: 0 20px 14px; } .composer { padding: 14px 20px 18px; } .message { max-width: 90%; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <aside class="side">
+      <div class="brand"><span class="mark" aria-hidden="true">C</span><span>Conecta Obras</span></div>
+      <div>
+        <p class="eyebrow">Atendimento inteligente</p>
+        <h1>Como podemos ajudar?</h1>
+        <p class="intro">Tire dúvidas sobre como encontrar profissionais, solicitar serviços e usar a plataforma Conecta Obras.</p>
+      </div>
+      <div class="side-note"><strong>Sobre este atendimento</strong>Demonstração baseada no repositório Conecta Obras. O assistente não consulta contas, pedidos ou disponibilidade em tempo real. Cada pergunta é respondida separadamente; as mensagens desta tela não são salvas no navegador.</div>
+    </aside>
+    <section class="chat" aria-label="Conversa com o atendimento">
+      <header class="chat-head">
+        <div><span class="chat-title">Atendimento Conecta Obras</span><span class="chat-subtitle">Assistente com Google Gemini</span></div>
+        <span class="availability"><span class="dot" aria-hidden="true"></span>Disponível para mensagens</span>
+      </header>
+      <div id="messages" class="messages" role="log" aria-live="polite" aria-relevant="additions">
+        <div class="message"><span class="speaker">Conecta Obras</span><div class="bubble">Olá! Posso explicar como encontrar profissionais, solicitar um serviço e pedir ajuda na plataforma. O que você gostaria de saber?</div></div>
+      </div>
+      <div class="prompts" aria-label="Perguntas sugeridas">
+        <button type="button" data-prompt="Como encontro um profissional?">Encontrar profissional</button>
+        <button type="button" data-prompt="Como peço um orçamento?">Pedir orçamento</button>
+        <button type="button" data-prompt="Como abro um chamado de suporte?">Pedir ajuda</button>
+      </div>
+      <form id="form" class="composer">
+        <label for="message">Sua mensagem</label>
+        <div class="input-row"><textarea id="message" name="message" maxlength="4000" required placeholder="Digite sua pergunta..." aria-describedby="hint"></textarea><button id="send" class="send" type="submit">Enviar</button></div>
+        <p id="hint" class="helper" role="status">Enter envia · Shift + Enter quebra a linha</p>
+      </form>
+    </section>
+  </main>
+  <script>
+    const form = document.querySelector('#form');
+    const field = document.querySelector('#message');
+    const send = document.querySelector('#send');
+    const hint = document.querySelector('#hint');
+    const messages = document.querySelector('#messages');
+    const promptButtons = [...document.querySelectorAll('[data-prompt]')];
+    const sessionId = `web-${crypto.randomUUID()}`;
+    const labels = { duvida_geral: 'Dúvida geral', orcamento: 'Orçamento', reclamacao: 'Reclamação', suporte_tecnico: 'Suporte técnico', outros: 'Outros', baixa: 'Prioridade baixa', media: 'Prioridade média', alta: 'Prioridade alta' };
+    let pending = false;
+
+    function addMessage(speaker, content, details = {}) {
+      const item = document.createElement('div');
+      item.className = `message ${speaker === 'Você' ? 'user' : ''} ${details.error ? 'error' : ''}`;
+      const name = document.createElement('span');
+      name.className = 'speaker';
+      name.textContent = speaker;
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.textContent = content;
+      item.append(name, bubble);
+      if (details.category || details.priority) {
+        const meta = document.createElement('div');
+        meta.className = 'meta';
+        for (const key of ['category', 'priority']) {
+          if (!details[key]) continue;
+          const pill = document.createElement('span');
+          pill.className = 'pill';
+          pill.textContent = labels[details[key]] || details[key];
+          meta.append(pill);
+        }
+        item.append(meta);
+      }
+      messages.append(item);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    for (const button of promptButtons) button.addEventListener('click', () => { field.value = button.dataset.prompt; field.focus(); });
+    field.addEventListener('keydown', event => {
+      if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) { event.preventDefault(); form.requestSubmit(); }
+    });
+    form.addEventListener('submit', async event => {
+      event.preventDefault();
+      const message = field.value.trim();
+      if (!message || pending) return;
+      addMessage('Você', message);
+      field.value = '';
+      pending = true;
+      field.disabled = send.disabled = true;
+      promptButtons.forEach(button => button.disabled = true);
+      hint.textContent = 'Consultando o atendimento...';
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 57000);
+      try {
+        const response = await fetch('/api/message', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ sessionId, message }), signal: controller.signal });
+        const result = await response.json();
+        if (typeof result.response !== 'string') throw new Error('Resposta inválida');
+        addMessage('Conecta Obras', result.response, { category: result.category, priority: result.priority, error: !response.ok || result.status !== 'success' });
+      } catch (error) {
+        addMessage('Conecta Obras', error.name === 'AbortError' ? 'O atendimento demorou demais. Tente novamente.' : 'Não foi possível conectar ao atendimento. Verifique se o n8n está ativo.', { error: true });
+      } finally {
+        clearTimeout(timer);
+        pending = false;
+        field.disabled = send.disabled = false;
+        promptButtons.forEach(button => button.disabled = false);
+        hint.textContent = 'Enter envia · Shift + Enter quebra a linha';
+        field.focus();
+      }
+    });
+  </script>
+</body>
+</html>
