@@ -1,3 +1,4 @@
+
 # Atendimento Conecta Obras com n8n e Gemini
 
 ## Propósito
@@ -8,9 +9,7 @@ Este projeto é um **MVP de atendimento automatizado** para tirar dúvidas sobre
 
 ## Vídeo de apresentação
 
-[![Prévia do atendimento Conecta Obras: interface de mensagens com uma pergunta e a resposta do assistente](brag-output/brag.jpg)](brag-output/brag.mp4)
-
-[▶ Assistir ao vídeo de apresentação (21 segundos)](brag-output/brag.mp4)
+https://github.com/user-attachments/assets/c5fd637f-4279-458c-a2c4-2e789003aa75
 
 O vídeo mostra uma conversa de demonstração, o caminho da mensagem pela interface, n8n e Gemini e como adaptar a automação para outra empresa. A conversa não é uma gravação de atendimento real.
 
