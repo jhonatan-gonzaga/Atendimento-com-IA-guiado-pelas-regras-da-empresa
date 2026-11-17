@@ -1,6 +1,8 @@
 
 # Atendimento Conecta Obras com n8n e Gemini
 
+![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=nodedotjs&logoColor=white) ![n8n](https://img.shields.io/badge/n8n-2.47.7-EA4B71?logo=n8n&logoColor=white) ![Google Gemini](https://img.shields.io/badge/Google-Gemini-8E75B2?logo=googlegemini&logoColor=white) ![Docker Compose](https://img.shields.io/badge/Docker-Compose-2496ED?logo=docker&logoColor=white)
+
 ## Propósito
 
 Este projeto é um **MVP de atendimento automatizado** para tirar dúvidas sobre o uso da plataforma Conecta Obras: busca de profissionais, solicitações de serviço, negociação de orçamento e abertura de chamados. Ele usa fatos e regras extraídos do [repositório Conecta Obras](https://github.com/jhonatan-gonzaga/conectaObras/tree/develop) para orientar as respostas. O assistente não contrata profissionais, não calcula preços e não acessa dados de usuários do aplicativo.
